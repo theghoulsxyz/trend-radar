@@ -19,6 +19,8 @@ type TikTokHashtagTrend = {
 };
 
 type ApiPayload = {
+  tiktokProvider?: "apify" | "scrape";
+
   ok: boolean;
   fetchedAt: string;
   google: GoogleTrendItem[];
@@ -87,6 +89,11 @@ export default function Page() {
           <h1 style={{ margin: 0, fontSize: 26 }}>Trend Radar</h1>
           <div style={{ opacity: 0.7, marginTop: 4 }}>
             Google trending searches + TikTok Creative Center hashtags (for meme scouting)
+            {data?.tiktokProvider ? (
+              <div style={{ opacity: 0.65, marginTop: 2, fontSize: 12 }}>
+                TikTok provider: <b>{data.tiktokProvider}</b>
+              </div>
+            ) : null}
           </div>
           {data?.fetchedAt && (
             <div style={{ opacity: 0.7, marginTop: 4, fontSize: 12 }}>
